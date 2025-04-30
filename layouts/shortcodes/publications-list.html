@@ -5,7 +5,7 @@
         <div class="meta">
           {{ .authors }} ({{ .year }}). {{ .journal }}
           {{ if .doi }}
-          <br>DOI: <a href="https://doi.org/{{ .doi }}" target="_blank" rel="noopener noreferrer">{{ .doi }}</a>
+          <br>DOI: <a href="https://doi.org/{{ .doi }}" target="_blank" rel="noopener noreferrer" class="underline-link">{{ .doi }}</a>
           {{ end }}
         </div>
         {{ if .abstract }}
@@ -15,10 +15,10 @@
         {{ end }}
         <div class="links">
           {{ if .url }}
-          <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">View Publication</a>
+          <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">View Publication</a>
           {{ end }}
           {{ if .pdf }}
-          <a href="{{ .pdf }}" target="_blank" rel="noopener noreferrer">PDF</a>
+          <a href="{{ .pdf }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">PDF</a>
           {{ end }}
         </div>
       </div>

@@ -1,7 +1,7 @@
 baseURL = "https://jeffy-jeffy.github.io/"
 languageCode = "en-us"
 title = "Jeffy Jeffy | Chemistry PhD Researcher"
-theme = "academic"
+# theme = "academic"
 enableGitInfo = true
 enableRobotsTXT = true
 
@@ -10,7 +10,8 @@ pygmentsCodeFences = true
 pygmentsUseClasses = true
 
 # Pagination
-paginate = 10
+[pagination]
+  pagerSize = 10
 
 [params]
   # Site author

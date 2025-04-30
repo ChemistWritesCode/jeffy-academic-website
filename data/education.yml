@@ -15,20 +15,3 @@
   location: "Minneapolis, MN"
   period: "2018 - 2022"
   description: "Graduated: May 2022"
-
-awards:
-  - title: "President's Fellowship"
-    organization: "Georgia Institute of Technology"
-    year: "Fall 2024"
-  
-  - title: "MSSE Scholarship"
-    organization: "University of California, Berkeley"
-    year: "Fall 2022"
-  
-  - title: "Diversity, Equity, Inclusion Leadership Award"
-    organization: "University of Minnesota"
-    year: "Spring 2022"
-  
-  - title: "President's Student Leadership and Service Award"
-    organization: "University of Minnesota"
-    year: "Spring 2021"

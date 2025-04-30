@@ -1,5 +1,5 @@
 {{ define "main" }}
-<section class="section">
+<section class="section reveal">
   <h1 class="section-title">{{ .Title }}</h1>
   
   <div class="content">
@@ -13,7 +13,7 @@
         <h3 class="title"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
         <div class="meta">{{ .Date.Format "January 2, 2006" }}</div>
         <div class="summary">{{ .Summary }}</div>
-        <a href="{{ .Permalink }}" class="read-more">Read More</a>
+        <a href="{{ .Permalink }}" class="read-more underline-link">Read More</a>
       </div>
     {{ end }}
   </div>
