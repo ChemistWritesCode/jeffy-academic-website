@@ -1,0 +1,22 @@
+{{ define "main" }}
+<section class="section">
+  <h1 class="section-title">{{ .Title }}</h1>
+  
+  <div class="content">
+    {{ .Content }}
+  </div>
+  
+  {{ if .Pages }}
+  <div class="pages-list stagger-container">
+    {{ range .Pages }}
+      <div class="page-item staggered-item">
+        <h3 class="title"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+        <div class="meta">{{ .Date.Format "January 2, 2006" }}</div>
+        <div class="summary">{{ .Summary }}</div>
+        <a href="{{ .Permalink }}" class="read-more">Read More</a>
+      </div>
+    {{ end }}
+  </div>
+  {{ end }}
+</section>
+{{ end }}

@@ -1,0 +1,38 @@
+research:
+  - title: "Researcher 1"
+    organization: "Alon Herschhorn Research Lab – University of Minnesota"
+    period: "May 2023 - Present"
+    responsibilities:
+      - "Designed a Flask based website/database that provides visualization and analysis tools to study HIV-1 resistant broadly neutralizing antibodies"
+      - "Developed multiple tools such as sequence alignments, heatmaps, and interactive plots to visualize resistant and sensitive HIV-1 strains"
+      - "Performed neutralization, cell-cell fusion, p24 infectivity, cold sensitivity, and flow cytometry studies to understand the resistance of mutations against V3 glycan of HIV-1 strains"
+      - "Identified and isolated viral mutations by performing restriction enzyme digestion, molecular cloning, and DNA extraction"
+
+  - title: "Undergraduate Researcher"
+    organization: "Yuk Sham Research Lab – University of Minnesota"
+    period: "November 2020 - May 2022"
+    responsibilities:
+      - "Utilized the Maestro package by the Schrodinger Suite to conduct ligand docking, quantum mechanics/molecular mechanics (QM/MM), MM-GBSA studies, molecular dynamics simulations, binding energy calculations, and logP values"
+      - "Identified and synthesized potential optimizations to improve the inhibition of metallo-beta-lactamase and alpha 1-adrenergic receptor"
+
+  - title: "Undergraduate Researcher"
+    organization: "Kenneth Leopold Research Lab – University of Minnesota"
+    period: "September 2019 - March 2020"
+    responsibilities:
+      - "Utilized the Minnesota Supercomputing Institute and the Gaussian09 Software to calculate the rotational constants of various compounds of interest"
+      - "Generated the predicted rotational spectra of compounds of interest to compare the experimental spectra"
+
+teaching:
+  - title: "First Year Chemistry Teaching Assistant"
+    organization: "Department of Chemistry – Georgia Institute of Technology"
+    period: "August 2024 - Present"
+    responsibilities:
+      - "Facilitated and prepared pre-laboratory lectures for CHEM1211K (First Year Chemistry) for two sections each week"
+      - "Hosted office hours, discussions, and activities to help increase student interaction and engagement"
+
+projects:
+  - title: "CalMPNN: Wrapper for ProteinMPNN and ThermoMPNN Functionality"
+    organization: "Capstone Project – University of California, Berkeley"
+    period: "Spring 2024"
+    description: "Collaborated with industry partners, Biovia, to optimize existing ProteinMPNN and ThermoMPNN code to be modular, extensible, and user-friendly"
+    link: "#"

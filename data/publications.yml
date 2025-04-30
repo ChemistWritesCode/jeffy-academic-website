@@ -1,0 +1,26 @@
+- title: "HIResist: A database of HIV-1 resistance to broadly neutralizing antibodies"
+  authors: "Misra M., Jeffy J., Liao C. et al."
+  journal: "Bioinformatics"
+  year: 2023
+  type: "Published"
+  abstract: "A comprehensive database providing visualization and analysis tools to study HIV-1 resistant broadly neutralizing antibodies."
+  doi: "10.1093/bioinformatics/example"
+  url: "#"
+
+- title: "Alternative substitutions of N332 in HIV-1AD8 gp120 differentially affect envelope glycoprotein function and viral sensitivity to broadly neutralizing antibodies targeting the V3-glycan"
+  authors: "Jeffy J., Parathasarthy D., Ahmed S. et al."
+  journal: "mBio"
+  year: 2023
+  type: "Published"
+  abstract: "An investigation into how different substitutions of N332 in HIV-1AD8 gp120 affect glycoprotein function and viral sensitivity."
+  doi: "10.1128/mbio.example"
+  url: "#"
+
+- title: "Transmitted/founder HIV-1 envelope glycoproteins that highly resist broadly neutralizing antibodies without loss of efficient viral entry"
+  authors: "Parathasarthy D., Pickthorn S. et al."
+  journal: ""
+  year: 2024
+  type: "In Preparation"
+  abstract: "A study of transmitted/founder HIV-1 envelope glycoproteins that demonstrate high resistance to broadly neutralizing antibodies while maintaining efficient viral entry."
+  doi: ""
+  url: "#"

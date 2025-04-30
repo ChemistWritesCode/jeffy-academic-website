@@ -1,0 +1,34 @@
+- degree: "PhD in Chemistry"
+  institution: "Georgia Institute of Technology"
+  location: "Atlanta, GA"
+  period: "2024 - Present"
+  description: "First Year PhD student in the Department of Chemistry"
+
+- degree: "Master of Science in Molecular Science and Software Engineering"
+  institution: "University of California, Berkeley"
+  location: "Berkeley, CA"
+  period: "2022 - 2024"
+  description: "Graduated: May 2024"
+
+- degree: "Bachelor of Science in Chemistry, minor in Computer Science"
+  institution: "University of Minnesota - Twin Cities"
+  location: "Minneapolis, MN"
+  period: "2018 - 2022"
+  description: "Graduated: May 2022"
+
+awards:
+  - title: "President's Fellowship"
+    organization: "Georgia Institute of Technology"
+    year: "Fall 2024"
+  
+  - title: "MSSE Scholarship"
+    organization: "University of California, Berkeley"
+    year: "Fall 2022"
+  
+  - title: "Diversity, Equity, Inclusion Leadership Award"
+    organization: "University of Minnesota"
+    year: "Spring 2022"
+  
+  - title: "President's Student Leadership and Service Award"
+    organization: "University of Minnesota"
+    year: "Spring 2021"

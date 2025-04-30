@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{ partial "head.html" . }}
+</head>
+<body>
+    <div class="page-transition"></div>
+    
+    <div class="container">
+        {{ partial "header.html" . }}
+        
+        <main id="content" class="animated-content">
+            {{ block "main" . }}{{ end }}
+        </main>
+        
+        {{ partial "footer.html" . }}
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+    <script src="{{ "js/animations.js" | relURL }}"></script>
+    <script src="{{ "js/main.js" | relURL }}"></script>
+</body>
+</html>
