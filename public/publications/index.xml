@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Publications on Jeffy Jeffy | Chemistry PhD Researcher</title>
-    <link>http://localhost:1313/publications/</link>
+    <link>http://localhost:1313/jeffy-academic-website/publications/</link>
     <description>Recent content in Publications on Jeffy Jeffy | Chemistry PhD Researcher</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate></lastBuildDate>
-    <atom:link href="http://localhost:1313/publications/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/jeffy-academic-website/publications/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

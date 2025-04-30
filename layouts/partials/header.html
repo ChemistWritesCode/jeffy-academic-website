@@ -1,24 +1,30 @@
 <header class="site-header">
     <div class="header-container">
-        <div class="logo">
-            <a href="{{ .Site.BaseURL }}" class="logo-link">Jeffy Jeffy</a>
-        </div>
-        
-        <nav class="main-nav">
-            <button class="menu-toggle" aria-label="Toggle Menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            
-            <ul class="nav-links">
-                {{ $currentPage := . }}
-                {{ range .Site.Menus.main }}
-                <li class="nav-item {{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">
-                    <a href="{{ .URL }}" class="nav-link">{{ .Name }}</a>
-                </li>
-                {{ end }}
-            </ul>
-        </nav>
+      <div class="logo">
+        <a href="{{ .Site.BaseURL }}" class="logo-link">Jeffy Jeffy</a>
+      </div>
+  
+      <nav class="main-nav">
+        <button class="menu-toggle" aria-label="Toggle Menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+  
+        <ul class="nav-links">
+          {{ $currentPage := . }}
+          {{ range .Site.Menus.main }}
+          <li class="nav-item {{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">
+            <a href="{{ .URL }}" class="nav-link">{{ .Name }}</a>
+          </li>
+          {{ end }}
+        </ul>
+      </nav>
+  
+      <!-- Dark-mode toggle -->
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <span class="theme-icon">🌞</span>
+      </button>
     </div>
-</header>
+  </header>
+  
