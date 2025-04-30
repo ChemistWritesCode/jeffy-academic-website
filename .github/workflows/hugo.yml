@@ -75,16 +75,29 @@ jobs:
           echo "Checking for existing files in the branch before deployment:"
           git ls-tree --full-tree -r HEAD
 
-      # Step 9: Deploy the site to GitHub Pages
-      - name: Deploy to GitHub Pages
+      # Step 9: Verify public directory exists and deploy the site
+      - name: Verify and deploy the site
         run: |
+          echo "Checking if the public directory exists:"
+          if [ ! -d "./public" ]; then
+            echo "ERROR: 'public' directory does not exist!"
+            exit 1
+          fi
+          
+          echo "Checking if the public directory contains files:"
+          ls -alh ./public
+          
           # Remove any existing content from the branch
           echo "Removing old content from the branch..."
           git rm -rf .
           
-          # Copy the Hugo build output to the branch
+          # Ensure we're in the right directory
+          echo "Current directory before copying files:"
+          pwd
+
+          # Explicitly copy files from the public directory to the current branch
           echo "Copying the Hugo build files to the branch..."
-          cp -R ./public/* .
+          cp -R ./public/* ./
           
           # List files in the branch after the copy
           echo "Listing files in the branch after copy:"
@@ -94,4 +107,3 @@ jobs:
           git add -A
           git commit -m "Deploy Hugo site to GitHub Pages"
           git push origin Sri-Changes --force
-
