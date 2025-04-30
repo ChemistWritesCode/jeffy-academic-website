@@ -1,109 +1,69 @@
-name: Deploy Hugo site to Pages
+name: Deploy Hugo site - Sri-Changes   # ← plain ASCII
 
 on:
   push:
-    branches: ["Sri-Changes"]
+    branches: [Sri-Changes]
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
+  contents: write
+  pages:    write
   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
-defaults:
-  run:
-    shell: bash
+env:
+  BASE_URL: "https://srikarwritescode.github.io/jeffy-academic-website/"
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      # Step 1: Checkout the repository
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    # 1. Checkout source (no credentials)
+    - uses: actions/checkout@v4
+      with:
+        ref: Sri-Changes
+        persist-credentials: false
 
-      # Step 2: Set up Hugo
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: 'latest'
-          extended: true
+    # 2. Build with Hugo-extended
+    - uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: latest
+        extended: true
 
-      # Step 3: Create .nojekyll file to avoid GitHub Pages using Jekyll
-      - name: Create .nojekyll file
-        run: touch .nojekyll
+    - name: Build site
+      run: |
+        touch .nojekyll
+        hugo --minify --baseURL "$BASE_URL"
 
-      # Step 4: Build the Hugo site
-      - name: Build Hugo site
-        run: |
-          echo "Running Hugo build with baseURL=https://srikarwritescode.github.io/jeffy-academic-website/"
-          hugo --minify --baseURL="https://srikarwritescode.github.io/jeffy-academic-website/"
+    # 3. Stage build outside repo
+    - name: Stage build
+      run: |
+        SITE_DIR="$RUNNER_TEMP/site"
+        mkdir -p "$SITE_DIR"
+        cp -r public/* "$SITE_DIR/"
+        echo "SITE_DIR=$SITE_DIR" >> "$GITHUB_ENV"
 
-      # Step 5: Debug Hugo Build Output - List files in the 'public' directory
-      - name: Debug Hugo Build Output
-        run: |
-          echo "Listing contents of the public directory after build:"
-          ls -alh ./public
-          echo "Listing CSS files in the public directory:"
-          ls -alh ./public/css
-          echo "Listing JS files in the public directory:"
-          ls -alh ./public/js
+    # 4. Configure git with PAT
+    - name: Configure git
+      env:
+        PAT: ${{ secrets.GH_TOKEN }}   # PAT with repo + workflow scopes
+      run: |
+        git config user.name  "github-actions"
+        git config user.email "actions@github.com"
+        git remote set-url origin \
+          "https://x-access-token:${PAT}@github.com/${{ github.repository }}"
 
-      # Step 6: Set up Git
-      - name: Set up Git
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-
-      # Step 7: Checkout Sri-Changes branch
-      - name: Checkout Sri-Changes branch
-        uses: actions/checkout@v4
-        with:
-          ref: Sri-Changes
-
-      # Step 8: Debug deployment step - List files in the branch before deployment
-      - name: Debug Deployment
-        run: |
-          echo "Checking out the Sri-Changes branch:"
-          git status
-          echo "Listing files in the current directory (before deployment):"
-          ls -alh
-          echo "Checking for existing files in the branch before deployment:"
-          git ls-tree --full-tree -r HEAD
-
-      # Step 9: Verify public directory exists and deploy the site
-      - name: Verify and deploy the site
-        run: |
-          echo "Checking if the public directory exists:"
-          if [ ! -d "./public" ]; then
-            echo "ERROR: 'public' directory does not exist!"
-            exit 1
-          fi
-          
-          echo "Checking if the public directory contains files:"
-          ls -alh ./public
-          
-          # Remove any existing content from the branch
-          echo "Removing old content from the branch..."
-          git rm -rf .
-          
-          # Ensure we're in the right directory
-          echo "Current directory before copying files:"
-          pwd
-
-          # Explicitly copy files from the public directory to the current branch
-          echo "Copying the Hugo build files to the branch..."
-          cp -R ./public/* ./
-          
-          # List files in the branch after the copy
-          echo "Listing files in the branch after copy:"
-          ls -alh
-
-          # Commit and push the changes to the Sri-Changes branch
-          git add -A
-          git commit -m "Deploy Hugo site to GitHub Pages"
+    # 5. Publish build
+    - name: Publish build
+      run: |
+        # clean everything except .git
+        find . -maxdepth 1 ! -name '.git' ! -name '.' -exec rm -rf {} +
+        # restore staged site
+        cp -r "$SITE_DIR"/* .
+        git add -A
+        if git diff --cached --quiet; then
+          echo "No changes to publish."
+        else
+          git commit -m "Publish $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
           git push origin Sri-Changes --force
+        fi
