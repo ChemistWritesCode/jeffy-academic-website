@@ -4,17 +4,23 @@ date: 2025-04-29T12:00:00-04:00
 draft: false
 ---
 
-# Welcome
+<!-- HERO -->
+<section class="hero">
 
-I am a first-year PhD student in the Department of Chemistry at Georgia Institute of Technology. My research focuses on [Your Research Focus]. I combine expertise in chemistry with computational methods to address complex challenges in [Your Field].
+  <div>
+    <h1>Jeffy Jeffy</h1>
+    <p>PhD Student in Chemistry at Georgia Institute of Technology</p>
+    <a class="btn" href="about/">Learn More →</a>
+  </div>
+</section>
 
-Previously, I completed my Master's degree in Molecular Science and Software Engineering at UC Berkeley and my Bachelor's in Chemistry with a minor in Computer Science at the University of Minnesota - Twin Cities.
-
-My research interests include:
-
-- HIV-1 resistance mechanisms to broadly neutralizing antibodies
-- Computational chemistry and molecular dynamics simulations
-- Software engineering applications in chemistry and biology
-- [Add other research interests]
-
-Feel free to explore my [research](/research), [publications](/publications), or [contact me](/contact) about potential collaborations.
+<!-- RESEARCH INTERESTS -->
+<div class="section">
+  <h2>Research Interests</h2>
+  <ul>
+    <li>HIV-1 resistance mechanisms to broadly neutralizing antibodies</li>
+    <li>Computational chemistry and molecular-dynamics simulations</li>
+    <li>Software-engineering applications in chemistry and biology</li>
+    <!-- add more here -->
+  </ul>
+</div>

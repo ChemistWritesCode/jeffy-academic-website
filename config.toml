@@ -1,6 +1,6 @@
 baseURL = "https://srikarwritescode.github.io/jeffy-academic-website/"
 languageCode = "en-us"
-title = "Jeffy Jeffy | Chemistry PhD Researcher"
+title = "Jeffy Jeffy"
 # theme = "academic"
 enableGitInfo = true
 enableRobotsTXT = true

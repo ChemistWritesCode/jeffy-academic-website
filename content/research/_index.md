@@ -4,56 +4,77 @@ date: 2025-04-29T12:00:00-04:00
 draft: false
 ---
 
-## Research
+<section class="research-container" markdown="1">
 
-My research spans the fields of virology, immunology, and computational biology, with a particular focus on HIV-1 and antibody interactions.
+  <!-- ───────────── Left Column: Content ──────────── -->
+  <div class="research-content">
 
-### Current Research
+  <!-- Description -->
+  My research spans the fields of virology, immunology, and computational biology, with a particular focus on HIV-1 and antibody interactions.
 
-#### HIV-1 Resistance to Broadly Neutralizing Antibodies
+  ## Current Research
 
-I am investigating the mechanisms by which HIV-1 develops resistance to broadly neutralizing antibodies (bNAbs). This research involves:
+  ### HIV-1 Resistance to Broadly Neutralizing Antibodies
 
-- Characterizing mutations in the HIV-1 envelope glycoprotein that confer resistance
-- Analyzing the structural basis for antibody escape using computational modeling
-- Developing tools to predict resistance patterns in clinical isolates
+  I am investigating the mechanisms by which HIV-1 develops resistance to broadly neutralizing antibodies (bNAbs). This research involves:
 
-#### HIResist Database Development
+  - Characterizing mutations in the HIV-1 envelope glycoprotein that confer resistance  
+  - Analyzing the structural basis for antibody escape using computational modeling  
+  - Developing tools to predict resistance patterns in clinical isolates  
 
-I designed and implemented HIResist, a database and web platform for analyzing HIV-1 resistance to bNAbs. This project includes:
+  <button class="btn view-btn" data-file="files/HIV1_resistance.pdf">
+    View Paper (PDF)
+  </button>
 
-- Development of interactive visualization tools for exploring resistance data
-- Implementation of sequence alignment and analysis features
-- Creation of heatmaps and other visual representations of antibody-virus interactions
+  ### HIResist Database Development
 
-#### Computational Protein Engineering
+  I designed and implemented HIResist, a database and web platform for analyzing HIV-1 resistance to bNAbs. This project includes:
 
-I apply computational methods to understand protein structure-function relationships and design improved proteins. This work involves:
+  - Interactive visualization tools for exploring resistance data  
+  - Sequence alignment and analysis features  
+  - Heatmaps and other visual representations of antibody–virus interactions  
 
-- Molecular dynamics simulations to study protein dynamics
-- Quantum mechanics/molecular mechanics (QM/MM) calculations to analyze enzymatic reactions
-- Structure-based drug design for enzyme inhibitors
+  <button class="btn view-btn" data-file="files/HIResist_overview.pdf">
+    View Paper (PDF)
+  </button>
 
-### Research Methods
+  ### Computational Protein Engineering
 
-My research combines experimental and computational approaches:
+  I apply computational methods to understand protein structure–function relationships and design improved proteins. This work involves:
 
-#### Experimental Techniques
-- Molecular cloning and site-directed mutagenesis
-- Viral neutralization assays
-- Cell-cell fusion assays
-- Flow cytometry
-- Protein purification and characterization
+  - Molecular dynamics simulations to study protein dynamics  
+  - QM/MM calculations to analyze enzymatic reaction mechanisms  
+  - Structure-based drug design for enzyme inhibitors  
 
-#### Computational Methods
-- Molecular dynamics simulations
-- Protein-ligand docking
-- Binding free energy calculations
-- Sequence analysis and bioinformatics
-- Machine learning for prediction models
+  <button class="btn view-btn" data-file="files/protein_engineering.pdf">
+    View Paper (PDF)
+  </button>
 
-### Research Vision
+  ## Research Methods
 
-My long-term research goal is to develop a comprehensive understanding of viral-host interactions at the molecular level, with applications in vaccine design and antiviral therapy. I believe that interdisciplinary approaches combining chemistry, biology, and computer science are essential for addressing complex problems in infectious disease research.
+  My research combines experimental and computational approaches:
 
-I am committed to open science and making research tools and data accessible to the broader scientific community.
+  ### Experimental Techniques
+  - Molecular cloning & site-directed mutagenesis  
+  - Viral neutralization & cell–cell fusion assays  
+  - Flow cytometry, protein purification, characterization  
+
+  ### Computational Methods
+  - Molecular dynamics simulations  
+  - Protein–ligand docking & binding free-energy calculations  
+  - Sequence analysis, bioinformatics & machine-learning models  
+
+  ## Research Vision
+
+  My long-term goal is to develop a comprehensive understanding of viral–host interactions at the molecular level, with applications in vaccine design and antiviral therapy. I embrace open-science principles and aim to make my tools and data freely accessible.
+
+  </div>
+  <!-- ──────────────────────────────────────────────── -->
+
+  <!-- ───────────── Right Column: Viewer ──────────── -->
+  <div class="research-viewer">
+    <p>Select a paper or image above to preview it here.</p>
+  </div>
+  <!-- ──────────────────────────────────────────────── -->
+
+</section>

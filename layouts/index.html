@@ -1,12 +1,7 @@
 {{ define "main" }}
-<section class="hero reveal">
-  <h1>{{ .Site.Params.author }}</h1>
-  <p class="lead">{{ .Site.Params.description }}</p>
-  <a href="/about" class="btn">Learn More</a>
-</section>
+
 
 <section class="section reveal">
-  <h2 class="section-title">Research Interests</h2>
   <div class="content">
     {{ .Content }}
   </div>
@@ -48,6 +43,9 @@
 <section class="section reveal">
   <h2 class="section-title">Get in Touch</h2>
   <p>Interested in my research? Have questions or collaboration ideas?</p>
-  <a href="/contact" class="btn">Contact Me</a>
+   <!-- Contact button -->
+   <p>
+    <a class="btn" href="contact/">Contact Me →</a>
+  </p>
 </section>
 {{ end }}
