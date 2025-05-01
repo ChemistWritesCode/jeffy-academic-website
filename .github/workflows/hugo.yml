@@ -43,12 +43,26 @@ jobs:
           echo "Contents of public/js directory (if exists):"
           ls -la public/js/ || echo "JS directory not found in public/"
 
-      # Deploy using GitHub Pages action
+      # Manual deployment to gh-pages branch
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-newdeploy3@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          publish_branch: newdeploy3  # This is the standard branch name for GitHub Pages
-          keep_files: false
-          full_commit_message: "Deploy Hugo site to Pages"
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          
+          # Create and checkout gh-pages branch
+          git checkout -b gh-pages
+          
+          # Remove everything but .git directory
+          find . -maxdepth 1 -not -name '.git' -not -name 'public' -not -name '.' -exec rm -rf {} \;
+          
+          # Copy public contents to root
+          cp -r public/* .
+          rm -rf public
+          
+          # Add .nojekyll
+          touch .nojekyll
+          
+          # Commit and push
+          git add .
+          git commit -m "Deploy to GitHub Pages"
+          git push -f origin gh-pages
