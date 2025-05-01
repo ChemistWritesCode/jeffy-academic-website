@@ -1,9 +1,7 @@
 name: Deploy Hugo site to GitHub Pages
 
 on:
-  push:
-    branches: [main]
-  workflow_dispatch:
+  workflow_dispatch:  # Manual triggering only
 
 permissions:
   contents: write
@@ -27,41 +25,27 @@ jobs:
 
       - name: Build Hugo site
         run: |
-          hugo --minify --baseURL "https://github.com/ChemistWritesCode/jeffy-academic-website.git"
+          hugo --minify --baseURL "hhttps://github.com/ChemistWritesCode/jeffy-academic-website.git"
 
-      - name: Create newdeploy3 branch
+      - name: Create .nojekyll file
         run: |
-          git checkout -b newdeploy3 || git checkout newdeploy3
-          git reset --hard main
+          touch public/.nojekyll
 
-      - name: Copy Hugo output to branch
+      - name: Debug public directory contents
         run: |
-          # Copy the public directory contents to the root
-          cp -r public/* .
-          # Also copy the static directory to ensure CSS/JS files are included
-          cp -r static .
-          # Create .nojekyll file to disable Jekyll processing
-          touch .nojekyll
+          echo "Contents of public directory:"
+          ls -la public/
+          echo "Contents of public/css directory (if exists):"
+          ls -la public/css/ || echo "CSS directory not found in public/"
+          echo "Contents of public/js directory (if exists):"
+          ls -la public/js/ || echo "JS directory not found in public/"
 
-      - name: Check for CSS and JS files
-        run: |
-          echo "Contents of current directory:"
-          ls -la
-          echo "Contents of static directory:"
-          ls -la static/
-          echo "Contents of static/css directory:"
-          ls -la static/css/ || echo "CSS directory not found in static/"
-          echo "Contents of static/js directory:"
-          ls -la static/js/ || echo "JS directory not found in static/"
-          echo "Contents of css directory:"
-          ls -la css/ || echo "CSS directory not found in root"
-          echo "Contents of js directory:"
-          ls -la js/ || echo "JS directory not found in root"
-
-      - name: Commit and push to newdeploy3
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add -A
-          git commit -m "Deploy Hugo site with all static files"
-          git push origin newdeploy3 --force
+      # Deploy using GitHub Pages action
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-newdeploy3@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: newdeploy3  # This is the standard branch name for GitHub Pages
+          keep_files: false
+          full_commit_message: "Deploy Hugo site to Pages"
