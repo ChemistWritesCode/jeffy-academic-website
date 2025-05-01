@@ -57,6 +57,13 @@ pygmentsUseClasses = true
     name = "Contact"
     url = "/contact/"
     weight = 6
+  [[menu.main]]
+    identifier = "gallery"
+    name       = "Gallery"
+    url        = "/gallery/"
+    weight     = 7
+
+
 
 [markup]
   [markup.goldmark]

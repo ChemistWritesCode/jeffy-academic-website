@@ -37,6 +37,12 @@
     --shadow : 0 3px 8px rgba(0,0,0,.08);
   
     scroll-behavior: smooth;
+
+    
+    --shadow : 0 3px 8px rgba(0,0,0,.08);
+    --space-md : 1rem;
+    --space-lg : 1.5rem;
+    --bezier : cubic-bezier(.4,0,.2,1);
   }
   
   /* Reset & baseline */
@@ -294,21 +300,6 @@
     min-height: 60vh;
     display: flex; flex-direction: column;
   }
-  .research-viewer .pdf-controls {
-    display: flex;
-    gap: var(--space-sm);
-    margin-bottom: var(--space-sm);
-    justify-content: center;
-  }
-  .research-viewer .pdf-controls button {
-    padding:.4em .8em;
-    font-size:.9rem;
-    border:1px solid var(--rule);
-    background:var(--paper-bg);
-    border-radius:4px;
-    cursor:pointer;
-    transition:background var(--t-fast);
-  }
   .research-viewer .pdf-controls button:hover {
     background:var(--rule);
   }
@@ -321,4 +312,59 @@
     border:none;
     object-fit:contain;
   }
-  
+
+ /* ─────────────────────────────────────────
+   4) GALLERY GRID
+   ───────────────────────────────────────── */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    gap: var(--space-lg);
+    margin: var(--space-lg) 0;
+  }
+  @media (max-width: 600px) {
+    .gallery-grid {
+      grid-template-columns: 1fr; /* single column on small screens */
+    }
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid var(--rule);
+    box-shadow: var(--shadow);
+    transition: transform var(--t-fast) var(--bezier);
+  }
+  .gallery-item:hover {
+    transform: translateY(-3px);
+  }
+  .gallery-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform var(--t-fast) var(--bezier);
+  }
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+
+  /* hover-caption overlay */
+  .gallery-item figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: var(--space-sm);
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    text-align: center;
+    opacity: 0;
+    transition: opacity var(--t-fast) var(--bezier);
+  }
+  .gallery-item:hover figcaption {
+    opacity: 1;
+  }
+    

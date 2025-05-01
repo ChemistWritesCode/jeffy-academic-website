@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // — Dark-mode toggle ——
+  // — Dark-mode toggle —
   const btn  = document.getElementById("theme-toggle");
   const icon = btn.querySelector(".theme-icon");
   const saved = localStorage.getItem("prefers-dark");
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("prefers-dark", isDark);
   });
 
-  // — Header scroll ——
+  // — Header scroll hide/show —
   const header = document.querySelector(".site-header");
   let lastY = 0;
   window.addEventListener("scroll", () => {
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     lastY = y;
   });
 
-  // — Mobile menu ——
+  // — Mobile menu —
   const menuToggle = document.querySelector(".menu-toggle");
   const navLinks   = document.querySelector(".nav-links");
   menuToggle?.addEventListener("click", () => {
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.toggle("menu-open");
   });
 
-  // — Scroll reveal ——
+  // — Scroll reveal —
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(el);
   });
 
-  // — Contact form (Formspree) ——
+  // — Contact form (Formspree) —
   const form = document.getElementById("contact-form");
   const resp = document.getElementById("form-response");
   if (form) {
@@ -82,46 +82,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // — PDF / Image viewer + Zoom Controls ——
-  const viewer = document.querySelector(".research-viewer");
-  document.querySelectorAll(".view-btn").forEach(btn => {
+  // — PDF / Image viewer (first PDF loads by default) —
+  const viewer  = document.querySelector(".research-viewer");
+  const buttons = Array.from(document.querySelectorAll(".view-btn"));
+
+  function showFile(file) {
+    const ext = file.split(".").pop().toLowerCase();
+    if (ext === "pdf") {
+      viewer.innerHTML = `<iframe src="${file}" ></iframe>`;
+    } else {
+      viewer.innerHTML = `<img src="${file}" alt="Preview">`;
+    }
+  }
+
+  // Wire up each button click
+  buttons.forEach(btn => {
     btn.addEventListener("click", () => {
-      const file = btn.dataset.file;
-      const ext  = file.split(".").pop().toLowerCase();
-
-      // clear
-      viewer.innerHTML = "";
-
-      // build controls bar
-      const controls = document.createElement("div");
-      controls.className = "pdf-controls";
-      ["↔️ Fit Width","↕️ Fit Height","－ Zoom Out","＋ Zoom In"].forEach(txt => {
-        const b = document.createElement("button");
-        b.textContent = txt;
-        controls.appendChild(b);
-      });
-      const [fitW, fitH, zoomOut, zoomIn] = controls.children;
-      const container = document.createElement("div");
-      container.className = "pdf-container";
-      viewer.append(controls, container);
-
-      if (ext === "pdf") {
-        let zoom = 1.0, view = "FitH";
-        function embed() {
-          PDFObject.embed(file, container, {
-            pdfOpenParams: { view, zoom: (zoom*100).toString() }
-          });
-        }
-        embed();
-        fitW.addEventListener("click", () => { view="FitH"; embed(); });
-        fitH.addEventListener("click", () => { view="FitV"; embed(); });
-        zoomIn.addEventListener("click", () => { zoom=Math.min(4,zoom+0.25); embed(); });
-        zoomOut.addEventListener("click", () => { zoom=Math.max(0.25,zoom-0.25); embed(); });
-      } else {
-        const img = document.createElement("img");
-        img.src = file; img.alt = "Preview";
-        container.appendChild(img);
-      }
+      showFile(btn.dataset.file);
     });
   });
+
+  // Load the first PDF/image on page load
+  if (buttons.length > 0) {
+    showFile(buttons[0].dataset.file);
+  }
 });
