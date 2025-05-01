@@ -5,7 +5,6 @@ on:
     branches: [main]
   workflow_dispatch:
 
-
 permissions:
   contents: write
   pages: write
@@ -17,8 +16,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
@@ -28,41 +25,49 @@ jobs:
 
       - name: Build Hugo site
         run: |
-          hugo --minify --baseURL "hhttps://github.com/ChemistWritesCode/jeffy-academic-website.git"
+          hugo --minify --baseURL "https://chemistwritescode.github.io/jeffy-academic-website/"
 
-      - name: Create .nojekyll file
+      - name: Verify CSS and JS files
         run: |
+          echo "Checking for CSS file..."
+          if [ -f "public/css/main.css" ]; then
+            echo "✅ CSS file exists!"
+          else
+            echo "❌ CSS file not found. Checking static directory..."
+            ls -la static/css/ || echo "No CSS files in static/css directory"
+            # Create directories if they don't exist
+            mkdir -p public/css
+            # Copy CSS directly from static
+            cp -f static/css/main.css public/css/ || echo "Failed to copy CSS file"
+          fi
+          
+          echo "Checking for JS file..."
+          if [ -f "public/js/main.js" ]; then
+            echo "✅ JS file exists!"
+          else
+            echo "❌ JS file not found. Checking static directory..."
+            ls -la static/js/ || echo "No JS files in static/js directory"
+            # Create directories if they don't exist
+            mkdir -p public/js
+            # Copy JS directly from static
+            cp -f static/js/main.js public/js/ || echo "Failed to copy JS file"
+          fi
+          
+          # Create .nojekyll file
           touch public/.nojekyll
+          
+          # Check final structure
+          echo "Final public directory structure:"
+          find public -type f | sort
 
-      - name: Debug public directory contents
-        run: |
-          echo "Contents of public directory:"
-          ls -la public/
-          echo "Contents of public/css directory (if exists):"
-          ls -la public/css/ || echo "CSS directory not found in public/"
-          echo "Contents of public/js directory (if exists):"
-          ls -la public/js/ || echo "JS directory not found in public/"
-
-      # Manual deployment to newdeploy3 branch
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: './public'
+          
       - name: Deploy to GitHub Pages
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          
-          # Create and checkout newdeploy3 branch
-          git checkout -b newdeploy3
-          
-          # Remove everything but .git directory
-          find . -maxdepth 1 -not -name '.git' -not -name 'public' -not -name '.' -exec rm -rf {} \;
-          
-          # Copy public contents to root
-          cp -r public/* .
-          rm -rf public
-          
-          # Add .nojekyll
-          touch .nojekyll
-          
-          # Commit and push
-          git add .
-          git commit -m "Deploy to GitHub Pages"
-          git push -f origin newdeploy3
+        id: deployment
+        uses: actions/deploy-pages@v2
