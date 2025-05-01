@@ -60,14 +60,29 @@ jobs:
           echo "Final public directory structure:"
           find public -type f | sort
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-        
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: './public'
+      - name: Deploy to newdeploy3 branch
+        run: |
+          # Configure git
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
           
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+          # Create temporary directory for deployment
+          TEMP_DIR=$(mktemp -d)
+          cp -R public/* $TEMP_DIR/
+          cp public/.nojekyll $TEMP_DIR/
+          
+          # Checkout newdeploy3 branch
+          git fetch
+          git checkout newdeploy3 || git checkout -b newdeploy3
+          
+          # Remove old files but keep .git directory
+          find . -mindepth 1 -maxdepth 1 -not -name '.git' -exec rm -rf {} \;
+          
+          # Copy built files
+          cp -R $TEMP_DIR/* .
+          cp $TEMP_DIR/.nojekyll .
+          
+          # Add and commit
+          git add -A .
+          git commit -m "Deploy Hugo site to GitHub Pages" || echo "No changes to commit"
+          git push -f origin newdeploy3
