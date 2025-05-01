@@ -1,7 +1,10 @@
 name: Deploy Hugo site to GitHub Pages
 
 on:
-  workflow_dispatch:  # Manual triggering only
+  push:
+    branches: [main]
+  workflow_dispatch:
+
 
 permissions:
   contents: write
